@@ -20,7 +20,8 @@ RUN apt-get update -qq && \
     libyaml-dev \
     libpq-dev \
     postgresql-client \
-    libvips && \
+    libvips \
+    imagemagick && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
