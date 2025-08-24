@@ -1,12 +1,12 @@
 class Api::V1::DrawingsController < ApplicationController
   def index
-    user = User.find(1)
+    user = User.first
     drawings = user.drawings.order(created_at: :desc)
     render :index, locals: { drawings: drawings }
   end
 
   def create
-    user = User.find(1)
+    user = User.first
 
     drawing = user.drawings.build(label: drawing_params[:label])
     if drawing_params[:image].present?
