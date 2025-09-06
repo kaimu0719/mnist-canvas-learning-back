@@ -1,4 +1,4 @@
-class Api::V1::DrawingsController < ApplicationController
+class V1::DrawingsController < ApplicationController
   def index
     user = User.first
     drawings = user.drawings.order(created_at: :desc)
