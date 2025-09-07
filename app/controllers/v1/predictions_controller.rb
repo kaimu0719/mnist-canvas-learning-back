@@ -3,9 +3,9 @@ class V1::PredictionsController < ApplicationController
   def create
     user = User.first
 
-    drawing = user.drawings.build(label: params[:label])
-    if params[:image].present?
-      drawing.image.attach(params[:image])
+    drawing = user.drawings.build(label: drawing_params[:label])
+    if drawing_params[:image].present?
+      drawing.image.attach(drawing_params[:image])
     end
 
     if drawing.save == false
@@ -22,4 +22,9 @@ class V1::PredictionsController < ApplicationController
   def show
     @prediction_log = PredictionLog.find(params[:id])
   end
+
+  private
+    def drawing_params
+      params.permit(:image, :label)
+    end
 end
