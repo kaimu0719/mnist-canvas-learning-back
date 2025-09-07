@@ -15,4 +15,9 @@ class V1::DrawingsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :created
   end
+
+  test "#show MNISTデータの詳細を取得できる" do
+    get v1_drawing_url(drawings(:drawing_of_label_0)), as: :json
+    assert_response :success
+  end
 end
