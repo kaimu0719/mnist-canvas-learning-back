@@ -1,5 +1,5 @@
 json.status "ok"
-json.data drawings do |drawing|
+json.data @drawings do |drawing|
   json.id(drawing.id)
   json.label(drawing.label)
 
