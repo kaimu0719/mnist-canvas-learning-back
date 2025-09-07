@@ -1,0 +1,1 @@
+label0_drawing_blob: <%= ActiveStorage::FixtureSet.blob filename: "label0_drawing.png" %>
