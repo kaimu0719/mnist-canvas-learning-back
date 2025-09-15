@@ -3,7 +3,7 @@ class V1::PredictionsController < ApplicationController
   def create
     user = User.first
 
-    drawing = user.drawings.build(label: drawing_params[:label])
+    drawing = user.drawings.build(label: normalize_label(drawing_params[:label]))
     if drawing_params[:image].present?
       drawing.image.attach(drawing_params[:image])
     end
@@ -26,5 +26,10 @@ class V1::PredictionsController < ApplicationController
   private
     def drawing_params
       params.permit(:image, :label)
+    end
+
+    def normalize_label(label)
+      return nil if label == "null"
+      Integer(label)
     end
 end
