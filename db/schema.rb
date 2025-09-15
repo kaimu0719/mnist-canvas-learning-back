@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_06_060538) do
 
   create_table "drawings", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "label", null: false
+    t.integer "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["label"], name: "index_drawings_on_label"
