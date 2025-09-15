@@ -2,7 +2,7 @@ class CreateDrawings < ActiveRecord::Migration[8.0]
   def change
     create_table :drawings do |t|
       t.references :user, null: false, foreign_key: true
-      t.integer :label, null: false
+      t.integer :label, null: true
       t.timestamps
     end
 
