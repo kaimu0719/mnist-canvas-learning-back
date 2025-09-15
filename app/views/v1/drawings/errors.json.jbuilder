@@ -1,2 +1,2 @@
 json.status "error"
-json.errors record.errors.full_messages
+json.errors @drawing.errors.full_messages
