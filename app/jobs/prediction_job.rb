@@ -4,7 +4,7 @@ class PredictionJob < ApplicationJob
   include Rails.application.routes.url_helpers
 
   queue_as :default
-  
+
   def perform(job_id:)
     require "net/http"
     require "uri"
@@ -19,25 +19,25 @@ class PredictionJob < ApplicationJob
       return
     end
 
-    app_uri = URI.parse("http://localhost:3000")
+    app_uri = URI.parse(ENV["APP_URL"])
 
     host_with_port =
-      if app_uri.port && ![80, 443].include?(app_uri.port)
+      if app_uri.port && ![ 80, 443 ].include?(app_uri.port)
         "#{app_uri.host}:#{app_uri.port}"
       else
         app_uri.host
       end
-    
+
     # 署名付きURL
     image_url = rails_blob_url(drawing.image, disposition: "attachment", host: host_with_port, protocol: app_uri.scheme)
 
-    uri = URI.join("http://host.docker.internal:8000", "/predict")
+    uri = URI.join(ENV["AI_BASE_URL"], "/predict")
     http = Net::HTTP.new(uri.host, uri.port)
     http.open_timeout = 10
     http.read_timeout = 30
     request = Net::HTTP::Post.new(uri.request_uri, { "Content-Type" => "application/json" })
     request.body = {
-      image_url: image_url,
+      image_url: image_url
     }.to_json
 
     Rails.logger.info("[PredictionJob] POST #{uri} body=#{request.body}")
