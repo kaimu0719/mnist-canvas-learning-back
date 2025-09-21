@@ -73,5 +73,8 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          APP_URL: http://localhost:3000
+          FRONT_BASE_URL: http://localhost:3001
+          AI_BASE_URL: http://host.docker.internal:8000
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
