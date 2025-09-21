@@ -19,7 +19,7 @@ class PredictionJob < ApplicationJob
       return
     end
 
-    app_uri = URI.parse(ENV["APP_URL"])
+    app_uri = URI.parse(AppConstants::APP_URL)
 
     host_with_port =
       if app_uri.port && ![ 80, 443 ].include?(app_uri.port)
@@ -31,7 +31,7 @@ class PredictionJob < ApplicationJob
     # 署名付きURL
     image_url = rails_blob_url(drawing.image, disposition: "attachment", host: host_with_port, protocol: app_uri.scheme)
 
-    uri = URI.join(ENV["AI_BASE_URL"], "/predict")
+    uri = URI.join(AppConstants::AI_BASE_URL, "/predict")
     http = Net::HTTP.new(uri.host, uri.port)
     http.open_timeout = 10
     http.read_timeout = 30
