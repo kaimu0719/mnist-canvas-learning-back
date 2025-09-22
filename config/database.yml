@@ -18,12 +18,15 @@ test:
 production:
   primary:
     url: <%= ENV["DATABASE_URL"] %>
-  cache:
-    url: <%= ENV["DATABASE_URL"] %>
-    migrations_paths: db/cache_schema
   queue:
     url: <%= ENV["DATABASE_URL"] %>
-    migrations_paths: db/queue_schema
+    migrations_paths: db/queue_migrate
+    schema_dump: db/queue_schema.rb
+  cache:
+    url: <%= ENV["DATABASE_URL"] %>
+    migrations_paths: db/cache_migrate
+    schema_dump: db/cache_schema.rb
   cable:
     url: <%= ENV["DATABASE_URL"] %>
-    migrations_paths: db/cable_schema
+    migrations_paths: db/cable_migrate
+    schema_dump: db/cable_schema.rb
