@@ -20,10 +20,10 @@ production:
     url: <%= ENV["DATABASE_URL"] %>
   cache:
     url: <%= ENV["DATABASE_URL"] %>
-    migrations_paths: db/cache_migrate
+    migrations_paths: db/cache_schema
   queue:
     url: <%= ENV["DATABASE_URL"] %>
-    migrations_paths: db/queue_migrate
+    migrations_paths: db/queue_schema
   cable:
     url: <%= ENV["DATABASE_URL"] %>
-    migrations_paths: db/cable_migrate
+    migrations_paths: db/cable_schema
